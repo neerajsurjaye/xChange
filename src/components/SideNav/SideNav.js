@@ -1,7 +1,7 @@
 import { makeStyles, Typography } from "@material-ui/core"
 import { ListItem } from "@material-ui/core"
 import { List } from "@material-ui/core"
-// import Toolbar from '@material-ui/core/Toolbar'
+import Toolbar from '@material-ui/core/Toolbar'
 
 let SideNav = () => {
     let useStyles = makeStyles((theme) => ({
