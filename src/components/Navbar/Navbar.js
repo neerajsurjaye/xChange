@@ -12,7 +12,9 @@ let Navbar = () => {
     let useStyles = makeStyles(() => ({
         root: {
             backgroundColor: '#FFF',
-            boxShadow: '0 0 10px rgba(0 ,0 ,0 ,0.2)'
+            boxShadow: '0 0 10px rgba(0 ,0 ,0 ,0.1)',
+            // boxShadow:'none'
+            height: '65px'
         },
         text: {
             color: 'black'
