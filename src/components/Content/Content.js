@@ -4,10 +4,13 @@ import SearchBar from '../SearchBar/SearchBar'
 import Products from '../Products/Products'
 
 let Content = () => {
-    let useStyles = makeStyles(() => ({
+    let useStyles = makeStyles((theme) => ({
         root: {
             display: 'grid',
-            gridTemplateColumns: '2fr 10fr'
+            gridTemplateColumns: '2fr 10fr',
+            [theme.breakpoints.down('sm')]: {
+                gridTemplateColumns: '1fr'
+            }
         }
     }))
 
@@ -16,7 +19,7 @@ let Content = () => {
     return (
         <>
             <div
-                style={{ height: '150vh' }}
+                // style={{ height: '150vh' }}
                 className={classes.root}
             >
 

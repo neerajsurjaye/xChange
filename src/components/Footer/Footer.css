@@ -1,0 +1,27 @@
+.Footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0,0,0,0.8);
+    /* filter: blur(2px); */
+    backdrop-filter: blur(6px);
+    display: grid;
+    grid-template-columns: 1fr 10fr 1fr;
+    color: white;
+}
+
+.Footer-Title{
+    display: flex;
+    justify-content: center;
+}
+
+.unlinked , .unlinked:visited , .unlinked:active{
+    color: white;
+    text-decoration: none;
+    font-size: 0.8rem;
+}
+
+.unlinked:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
