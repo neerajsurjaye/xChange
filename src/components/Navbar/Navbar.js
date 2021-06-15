@@ -38,7 +38,7 @@ let Navbar = () => {
     let classes = useStyles()
     let [logged, setLogged] = useState(false)
     let [draw, setDraw] = useState(false)
-    setLogged(false)
+    // setLogged(false)
 
     return (
         <>
