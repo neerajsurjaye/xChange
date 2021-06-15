@@ -5,11 +5,15 @@ import Footer from './components/Footer/Footer'
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Login from './components/Login/Login'
 
+
 function App() {
+  // fire.init()
+
   return (
     <div className="App">
       <BrowserRouter>
         <Switch>
+
 
           <Route exact path='/'>
             <Navbar></Navbar>
@@ -17,7 +21,7 @@ function App() {
             <Footer></Footer>
           </Route>
 
-          <Route exact path='/login'>
+          <Route path='/login'>
             <Login></Login>
           </Route>
 

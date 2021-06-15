@@ -17,7 +17,7 @@ let Products = () => {
         let out = []
         for (let i = 0; i < x; i++) {
             out.push(
-                <Card>
+                <Card key={i}>
                     <CardActionArea>
 
                         <CardMedia
