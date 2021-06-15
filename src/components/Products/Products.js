@@ -22,7 +22,7 @@ let Products = () => {
 
                         <CardMedia
                             className={'Prodmedia'}
-                            image="https://www.marketingtutor.net/wp-content/uploads/2018/06/what-is-a-product.jpg"
+                            image="https://www.mountaingoatsoftware.com/uploads/blog/2016-09-06-what-is-a-product.png"
                             title="Contemplative Reptile"
                         />
 

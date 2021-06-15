@@ -5,7 +5,7 @@ let CatLabel = (props) => {
     let cats = [
         ['Electronics', '#999'],
         ['Testing', '#F00'],
-        ['Clothes', '#0A4']
+        ['Clothes', '#3C5']
     ]
 
     if (!props.cat || isNaN(props.cat)) {

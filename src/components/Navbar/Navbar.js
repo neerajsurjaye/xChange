@@ -10,6 +10,7 @@ import { useState } from 'react'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import { Menu } from '@material-ui/icons'
 import NavList from '../NavList/NavList'
+import { Link } from 'react-router-dom'
 
 let Navbar = () => {
     let useStyles = makeStyles((theme) => ({
@@ -37,6 +38,7 @@ let Navbar = () => {
     let classes = useStyles()
     let [logged, setLogged] = useState(false)
     let [draw, setDraw] = useState(false)
+    setLogged(false)
 
     return (
         <>
@@ -60,13 +62,14 @@ let Navbar = () => {
                                 <AccountCircleIcon></AccountCircleIcon>
                             </IconButton>
                             :
-                            <Button
-                                color='primary'
-                                variant='contained'
-                                onClick={() => setLogged(!logged)}
-                            >
-                                Sign in
-                            </Button>
+                            <Link to='/login'>
+                                <Button
+                                    // color='primary'
+                                    variant='contained'
+                                >
+                                    Login
+                                </Button>
+                            </Link>
                     }
 
 
