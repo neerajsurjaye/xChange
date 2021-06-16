@@ -13,9 +13,13 @@
 }
 
 .login-form{
-    background-color: #EEEEFF;
     display: grid;
     grid-template-rows: 1fr 2fr;
+    height: 100%;
+}
+
+.loginSignUp{
+    background-color: #EEEEFF;
 }
 
 .login-header{
@@ -59,6 +63,15 @@
 .input-signUp-text{
     display: flex;
     align-items: flex-end;
+}
+
+.signUpOut{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
 }
 
 @media (max-width: 1000px) {

@@ -6,11 +6,12 @@ import Button from '@material-ui/core/Button'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 import IconButton from '@material-ui/core/IconButton'
 import Drawer from '@material-ui/core/Drawer'
-import { useState } from 'react'
-import AccountCircleIcon from '@material-ui/icons/AccountCircle'
+import { useEffect, useState } from 'react'
 import { Menu } from '@material-ui/icons'
 import NavList from '../NavList/NavList'
 import { Link } from 'react-router-dom'
+import fire from '../../scripts/fire'
+import firebase from 'firebase'
 
 let Navbar = () => {
     let useStyles = makeStyles((theme) => ({
@@ -36,9 +37,26 @@ let Navbar = () => {
     }))
 
     let classes = useStyles()
-    let [logged, setLogged] = useState(false)
+    let [logged, setLogged] = useState(1)
     let [draw, setDraw] = useState(false)
     // setLogged(false)
+
+    let logOut = () => {
+        fire.logOut()
+            .then(() => {
+                setLogged(0)
+            })
+    }
+
+    useEffect(() => {
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                setLogged(1)
+            } else {
+                setLogged(0)
+            }
+        })
+    }, [])
 
     return (
         <>
@@ -58,15 +76,12 @@ let Navbar = () => {
                     {
                         // Check logged in or not
                         logged ?
-                            <IconButton >
-                                <AccountCircleIcon></AccountCircleIcon>
-                            </IconButton>
+                            <Button onClick={logOut}>
+                                Logout
+                            </Button>
                             :
                             <Link to='/login'>
-                                <Button
-                                    // color='primary'
-                                    variant='contained'
-                                >
+                                <Button>
                                     Login
                                 </Button>
                             </Link>

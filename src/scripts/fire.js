@@ -5,6 +5,8 @@ import 'firebase/auth'
 let db;
 let auth;
 
+
+
 let init = () => {
     var firebaseConfig = {
         apiKey: "AIzaSyApDx7ECIGFkFRyjEmEy_hRMZqUQg9UlhI",
@@ -19,8 +21,23 @@ let init = () => {
 
     db = firebase.firestore();
     auth = firebase.auth();
-    console.log("data", db);
+
 }
 
-let out = { init }
+let signUp = (mail, pass) => {
+    return auth.createUserWithEmailAndPassword(mail, pass)
+}
+
+let logOut = () => {
+    return auth.signOut()
+}
+
+let signIn = (mail, pass) => {
+    return auth.signInWithEmailAndPassword(mail, pass)
+}
+
+// let authStat = () => auth.onAuthStateChanged
+
+
+let out = { init, signUp, logOut, signIn }
 export default out
