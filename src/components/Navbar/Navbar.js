@@ -39,6 +39,7 @@ let Navbar = () => {
     let classes = useStyles()
     let [logged, setLogged] = useState(1)
     let [draw, setDraw] = useState(false)
+    let [user, setUser] = useState("asdf")
     // setLogged(false)
 
     let logOut = () => {
@@ -50,6 +51,12 @@ let Navbar = () => {
 
     useEffect(() => {
         firebase.auth().onAuthStateChanged((user) => {
+
+            fire.getUser()
+                .then(data => {
+                    if (data) { setUser(data[0].Name) }
+                })
+
             if (user) {
                 setLogged(1)
             } else {
@@ -73,6 +80,12 @@ let Navbar = () => {
                         xChange
                     </Typography>
 
+                    <Button >
+                        <Typography variant='body1' color='textPrimary'>
+                            {user}
+                        </Typography>
+                    </Button>
+
                     {
                         // Check logged in or not
                         logged ?
@@ -86,6 +99,7 @@ let Navbar = () => {
                                 </Button>
                             </Link>
                     }
+
 
 
                     <IconButton>

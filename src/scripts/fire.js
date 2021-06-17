@@ -36,8 +36,18 @@ let signIn = (mail, pass) => {
     return auth.signInWithEmailAndPassword(mail, pass)
 }
 
-// let authStat = () => auth.onAuthStateChanged
+let getUser = () => {
+    return db.collection('users').get()
+        .then(snapshot => {
+            let data = []
+            snapshot.forEach((doc) => {
+                // console.log(doc.data());
+                data.push(doc.data())
+            })
+            return data
+        })
+}
 
 
-let out = { init, signUp, logOut, signIn }
+let out = { init, signUp, logOut, signIn, getUser }
 export default out

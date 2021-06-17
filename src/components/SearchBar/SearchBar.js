@@ -8,7 +8,7 @@ import { useState } from "react"
 let SearchBar = () => {
     let useStyles = makeStyles(() => ({
         root: {
-            border: '1px solid rgba(0,0,0,0.3)',
+            // border: '1px solid rgba(0,0,0,0.3)',
             display: 'grid',
             gridTemplateColumns: '1fr 1fr',
             width: '100%',

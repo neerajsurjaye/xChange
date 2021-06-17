@@ -1,6 +1,7 @@
 import { makeStyles, Typography } from "@material-ui/core"
 import { ListItem } from "@material-ui/core"
 import { List } from "@material-ui/core"
+import Divider from '@material-ui/core/Divider'
 
 let NavList = () => {
 
@@ -32,12 +33,12 @@ let NavList = () => {
         <List component='nav' className={classes.root}>
 
             <ListItem>
-                <Typography variant='h6'>
+                <Typography variant='h5'>
                     Cateogaries
                 </Typography>
 
             </ListItem>
-
+            <Divider />
             <ListItem button >
                 <Typography variant='body2' color='textSecondary' >
                     Electronics
