@@ -4,7 +4,7 @@ import Content from './components/Content/Content'
 import Footer from './components/Footer/Footer'
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Login from './components/Login/Login'
-
+import User from './components/User/User'
 
 function App() {
   // fire.init()
@@ -23,6 +23,10 @@ function App() {
 
           <Route path='/login'>
             <Login></Login>
+          </Route>
+
+          <Route path='/user'>
+            <User></User>
           </Route>
 
         </Switch>

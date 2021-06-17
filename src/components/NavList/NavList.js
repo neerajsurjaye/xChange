@@ -33,7 +33,7 @@ let NavList = () => {
         <List component='nav' className={classes.root}>
 
             <ListItem>
-                <Typography variant='h5'>
+                <Typography variant='h5' color='textSecondary'>
                     Cateogaries
                 </Typography>
 

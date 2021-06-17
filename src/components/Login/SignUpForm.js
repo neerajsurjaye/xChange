@@ -7,11 +7,12 @@ import fire from '../../scripts/fire'
 import Loader from '../Loader/Loader'
 import { Alert, AlertTitle } from '@material-ui/lab';
 import { Link } from 'react-router-dom'
-
+import firebase from 'firebase'
 
 let SignUpForm = () => {
     let [mail, setMail] = useState("")
     let [pass, setPass] = useState("")
+    let [name, setName] = useState("")
     let [load, setLoad] = useState(0)
     let [succ, setSucc] = useState({ pass: -1 })
 
@@ -23,13 +24,29 @@ let SignUpForm = () => {
         setPass(e.target.value)
     }
 
+    let handleName = (e) => {
+        setName(e.target.value)
+    }
+
+
     let signUp = () => {
         setLoad(1)
         fire.signUp(mail, pass)
             .then((result) => {
 
-                setLoad(0)
-                setSucc({ pass: 1, res: result })
+                let user = firebase.auth().currentUser;
+
+                if (user) {
+                    fire.genUser(user.uid, name)
+                        .then(() => {
+                            setLoad(0)
+                            setSucc({ pass: 1, res: result })
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        })
+
+                }
             })
             .catch((err) => {
 
@@ -78,12 +95,20 @@ let SignUpForm = () => {
         <form className='login-form'>
 
             <Typography variant='h3' className='login-header' >Sign-up</Typography>
+
             <div className='login-inputs'>
                 <TextField
                     error={false}
                     className='login-inp-size'
                     label='UserName'
-                    helperText="Enter an email"
+                    value={name}
+                    onChange={handleName}
+                ></TextField>
+
+                <TextField
+                    error={false}
+                    className='login-inp-size'
+                    label='Email'
                     value={mail}
                     onChange={handleMail}
                 ></TextField>
@@ -91,6 +116,7 @@ let SignUpForm = () => {
                 <TextField
                     className='login-inp-size'
                     label='Password'
+                    type='password'
                     value={pass}
                     onChange={handlePass}
                 ></TextField>

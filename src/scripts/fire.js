@@ -1,4 +1,4 @@
-import firebase from "firebase";
+import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
 
@@ -36,18 +36,26 @@ let signIn = (mail, pass) => {
     return auth.signInWithEmailAndPassword(mail, pass)
 }
 
-let getUser = () => {
-    return db.collection('users').get()
-        .then(snapshot => {
-            let data = []
-            snapshot.forEach((doc) => {
-                // console.log(doc.data());
-                data.push(doc.data())
-            })
-            return data
+let getUser = (uid) => {
+    return db.collection('users').doc(uid).get()
+        .then((doc) => {
+            if (doc.exists) {
+                return doc.data()
+            }
         })
+        .catch(err => err)
+}
+
+let genUser = (uid, name) => {
+    return db.collection('users').doc(uid).set({
+        name: name,
+        uid: uid,
+        prods: [],
+        cart: [],
+        sell: 0
+    })
 }
 
 
-let out = { init, signUp, logOut, signIn, getUser }
+let out = { init, signUp, logOut, signIn, getUser, genUser }
 export default out

@@ -80,6 +80,7 @@ let LoginForm = () => {
                     label='UserName'
                     value={mail}
                     onChange={(e) => { setMail(e.target.value) }}
+                    type='email'
                 ></TextField>
 
                 <TextField
@@ -87,6 +88,7 @@ let LoginForm = () => {
                     label='Password'
                     value={pass}
                     onChange={(e) => { setPass(e.target.value) }}
+                    type='password'
                 ></TextField>
 
                 <div className='input-buttons'>

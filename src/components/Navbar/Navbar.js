@@ -7,13 +7,17 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 import IconButton from '@material-ui/core/IconButton'
 import Drawer from '@material-ui/core/Drawer'
 import { useEffect, useState } from 'react'
-import { Menu } from '@material-ui/icons'
+import MenuIcon from '@material-ui/icons/Menu'
 import NavList from '../NavList/NavList'
 import { Link } from 'react-router-dom'
 import fire from '../../scripts/fire'
 import firebase from 'firebase'
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
 
-let Navbar = () => {
+
+let Navbar = (props) => {
     let useStyles = makeStyles((theme) => ({
         root: {
             backgroundColor: '#FFF',
@@ -39,7 +43,17 @@ let Navbar = () => {
     let classes = useStyles()
     let [logged, setLogged] = useState(1)
     let [draw, setDraw] = useState(false)
-    let [user, setUser] = useState("asdf")
+    // let [user, setUser] = useState("")
+    const [anchorEl, setAnchorEl] = useState(null);
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
     // setLogged(false)
 
     let logOut = () => {
@@ -50,48 +64,51 @@ let Navbar = () => {
     }
 
     useEffect(() => {
-        firebase.auth().onAuthStateChanged((user) => {
+        let unSub = firebase.auth().onAuthStateChanged((user) => {
 
-            fire.getUser()
-                .then(data => {
-                    if (data) { setUser(data[0].Name) }
-                })
+
 
             if (user) {
+                // console.log(user.uid);
                 setLogged(1)
+
             } else {
                 setLogged(0)
             }
         })
+
+        return () => {
+            unSub()
+        }
     }, [])
 
     return (
         <>
             <AppBar className={classes.root} position='sticky'>
                 <Toolbar>
-                    <IconButton
-                        className={classes.menuIcon}
-                        onClick={() => setDraw(!draw)}
-                    >
-                        <Menu></Menu>
-                    </IconButton>
+                    {
+                        props.user || (
+                            <IconButton
+                                className={classes.menuIcon}
+                                onClick={() => setDraw(!draw)}
+                            >
+                                <MenuIcon />
+                            </IconButton>
+                        )
+                    }
 
                     <Typography variant='h4' className={`${classes.text} ${classes.autoMargin}`}>
                         xChange
                     </Typography>
 
-                    <Button >
-                        <Typography variant='body1' color='textPrimary'>
-                            {user}
-                        </Typography>
-                    </Button>
+
 
                     {
                         // Check logged in or not
                         logged ?
-                            <Button onClick={logOut}>
-                                Logout
-                            </Button>
+                            <IconButton variant='outlined' onClick={handleClick}>
+                                <AccountCircleIcon></AccountCircleIcon>
+                            </IconButton>
                             :
                             <Link to='/login'>
                                 <Button>
@@ -116,6 +133,25 @@ let Navbar = () => {
             <Drawer anchor='left' open={draw} onClose={() => setDraw(!draw)} >
                 <NavList></NavList>
             </Drawer>
+
+
+            <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+            >
+                <Link to='/user' className='cleanLink'>
+                    <MenuItem onClick={handleClose}>My account</MenuItem>
+                </Link>
+                <MenuItem
+                    onClick={() => {
+                        handleClose()
+                        logOut()
+                    }}
+                >Logout</MenuItem>
+            </Menu>
         </>
     )
 }

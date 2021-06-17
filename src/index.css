@@ -17,6 +17,11 @@ code {
   box-sizing: border-box;
 }
 
-/* .a , .a:visited , .a:active{
+a , a:visited , a:active{
   text-decoration: none;
-} */
+  color:inherit;
+}
+
+:root{
+  --back : #f1f1f1;
+}
