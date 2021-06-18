@@ -7,7 +7,8 @@ import fire from '../../scripts/fire'
 import Loader from '../Loader/Loader'
 import { Alert, AlertTitle } from '@material-ui/lab';
 import { Link } from 'react-router-dom'
-import firebase from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/auth'
 
 let SignUpForm = () => {
     let [mail, setMail] = useState("")
