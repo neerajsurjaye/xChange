@@ -16,6 +16,7 @@ import 'firebase/auth'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
+import logo from '../../img/logo.png'
 
 
 let Navbar = (props) => {
@@ -37,6 +38,9 @@ let Navbar = (props) => {
                 display: 'none'
             }
         },
+        navLogo: {
+            maxWidth: '200px'
+        }
 
 
     }))
@@ -98,9 +102,12 @@ let Navbar = (props) => {
                         )
                     }
 
-                    <Typography variant='h4' className={`${classes.text} ${classes.autoMargin}`}>
+                    {/* <Typography variant='h4' className={`${classes.text} ${classes.autoMargin}`}>
                         xChange
-                    </Typography>
+                    </Typography> */}
+
+                    <img src={logo} className={`${classes.navLogo} ${classes.autoMargin}`}></img>
+
 
                     <Link to='/'>
                         <Typography variant='body2' color='textSecondary'>Home</Typography>

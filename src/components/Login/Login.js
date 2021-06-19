@@ -4,6 +4,9 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { Route, Switch, useRouteMatch, Link } from "react-router-dom"
 import LoginForm from './LoginForm'
 import SignUpForm from './SignUpForm'
+import logo from '../../img/logo.png'
+
+
 
 let Login = () => {
     let match = useRouteMatch()
@@ -12,7 +15,7 @@ let Login = () => {
         <>
             <div className='login-root'>
                 <div className='login-title'>
-                    xChange
+                    <img src={logo}></img>
                 </div>
 
                 <div className='loginSignUp'>
