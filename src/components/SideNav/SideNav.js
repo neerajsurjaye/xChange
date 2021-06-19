@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core"
 import NavList from "../NavList/NavList"
 // import Toolbar from '@material-ui/core/Toolbar'
 
-let SideNav = () => {
+let SideNav = (props) => {
     let useStyles = makeStyles((theme) => ({
         root: {
 
@@ -11,7 +11,7 @@ let SideNav = () => {
             // position: '-webkit-sticky
         },
         cont: {
-            borderRight: '1px solid rgba(0,0,0,0.3)',
+            borderRight: '1px solid rgba(0,0,0,0.2)',
             position: 'relative',
             [theme.breakpoints.down('sm')]: {
                 display: 'none'
@@ -24,7 +24,7 @@ let SideNav = () => {
     return (
         <div className={classes.cont}>
 
-            <NavList></NavList>
+            <NavList {...props}></NavList>
 
         </div >
     )

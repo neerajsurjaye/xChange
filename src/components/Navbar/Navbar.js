@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom'
 import fire from '../../scripts/fire'
 import firebase from 'firebase/app'
 import 'firebase/auth'
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import logo from '../../img/logo.png'
@@ -39,7 +39,10 @@ let Navbar = (props) => {
             }
         },
         navLogo: {
-            maxWidth: '200px'
+            maxWidth: '200px',
+            [theme.breakpoints.down('sm')]: {
+                maxWidth: '100px'
+            }
         }
 
 
@@ -106,7 +109,7 @@ let Navbar = (props) => {
                         xChange
                     </Typography> */}
 
-                    <img src={logo} className={`${classes.navLogo} ${classes.autoMargin}`}></img>
+                    <img src={logo} className={`${classes.navLogo} ${classes.autoMargin}`} alt='logo'></img>
 
 
                     <Link to='/'>
@@ -117,7 +120,7 @@ let Navbar = (props) => {
                         // Check logged in or not
                         logged ?
                             <IconButton variant='outlined' onClick={handleClick}>
-                                <AccountCircleIcon></AccountCircleIcon>
+                                <MenuIcon></MenuIcon>
                             </IconButton>
                             :
                             <Link to='/login'>
@@ -141,7 +144,7 @@ let Navbar = (props) => {
 
 
             <Drawer anchor='left' open={draw} onClose={() => setDraw(!draw)} >
-                <NavList></NavList>
+                <NavList handleCateo={props.handleCateo}></NavList>
             </Drawer>
 
 

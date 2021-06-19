@@ -44,15 +44,18 @@ let UploadProd = (props) => {
         </>
     }
     return <>
-        <Typography variant='h5'>Sell Product</Typography>
-        <Link to='/sell'>
-            <Button variant='outlined' color='secondary'>Add Product</Button>
-        </Link>
+        <div className="formMargin">
+            <Typography variant='h5'>Sell Product</Typography>
+            <Link to='/sell'>
+                <Button variant='outlined' color='secondary'>Add Product</Button>
+            </Link>
+        </div>
+        <div className="formMargin">
 
-        <Typography variant='h5'>Your Products</Typography>
-        <UserProducts></UserProducts>
+            <Typography variant='h5'>Your Products</Typography>
+            <UserProducts></UserProducts>
+        </div >
     </>
-
 }
 
 let UserProducts = () => {

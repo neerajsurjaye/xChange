@@ -130,8 +130,19 @@ let uploadProd = (name, desc, price, file, phone, mail, cats, setInfo) => {
 }
 
 
-let getProducts = () => {
-    return db.collection('products').get()
+let getProducts = (cats) => {
+    if (!cats) {
+        return db.collection('products').get()
+            .then((snapshot) => {
+                let data = []
+                snapshot.forEach((doc) => {
+                    data.push(doc.data());
+                })
+                return data
+            })
+    }
+
+    return db.collection('products').where("cats", "array-contains", cats).get()
         .then((snapshot) => {
             let data = []
             snapshot.forEach((doc) => {
@@ -139,6 +150,7 @@ let getProducts = () => {
             })
             return data
         })
+
 }
 
 let out = { init, signUp, logOut, signIn, getUser, genUser, uploadProd, getProducts }

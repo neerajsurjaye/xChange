@@ -64,7 +64,6 @@ let Sell = () => {
         for (let keys in cats) {
             let cateo = cats[keys]
 
-
             out.push(
                 <FormControlLabel
                     key={cateo.code}
@@ -89,7 +88,12 @@ let Sell = () => {
             if (cats[keys].selected) {
                 out.push(cats[keys].code)
             }
+
+            if (cats[keys].code === '00' && !(cats[keys].selected)) {
+                out.push(cats[keys].code)
+            }
         }
+        console.log("selected gens : ", out)
         return out
     }
 
@@ -168,13 +172,13 @@ let Sell = () => {
                                 </TextField>
                             </div>
 
-                            <div>
-                                <Typography variant='h5' color='textSecondary'>Select Cateogaries</Typography>
+                            <div className="formMargin">
+                                <Typography variant='h5' >Select Cateogaries</Typography>
                                 {genCheckBox(cats)}
                             </div>
 
-                            <div>
-                                <Typography variant='h5' color='textSecondary'>Upload Image</Typography>
+                            <div className="formMargin">
+                                <Typography variant='h5' >Upload Image</Typography>
                                 <Button variant='outlined' color='secondary' component='label'>
                                     Select Image
                                     <input type="file" accept="image/png, image/jpeg" hidden
@@ -183,8 +187,8 @@ let Sell = () => {
                                 </Button>
                             </div>
 
-                            <div>
-                                <Typography variant='h5' color='textSecondary'>Contact Info</Typography>
+                            <div className="formMargin">
+                                <Typography variant='h5' >Contact Info</Typography>
                                 <TextField
                                     label='Phone No'
                                     fullWidth
@@ -204,9 +208,11 @@ let Sell = () => {
                                 </TextField>
                             </div>
 
-                            <Button component='span' variant='contained' type='submit' color='primary' onClick={submitForm}>
-                                Submit
-                            </Button>
+                            <div className="formMargin">
+                                <Button component='span' variant='contained' type='submit' color='primary' onClick={submitForm}>
+                                    Submit
+                                </Button>
+                            </div>
 
                         </form>
 

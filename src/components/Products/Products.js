@@ -12,7 +12,7 @@ import { useState } from 'react';
 
 import Loader from '../Loader/Loader'
 
-let Products = () => {
+let Products = (props) => {
 
     let [load, setLoad] = useState(1)
     let [data, setData] = useState({})
@@ -21,19 +21,21 @@ let Products = () => {
         let out = [];
         for (let i = 0; i < cats.length; i++) {
             out.push(
-                <CatLabel cat={cats[i]}></CatLabel>
+                <CatLabel cat={cats[i]} key={i}></CatLabel>
             )
         }
         return out;
     }
 
     useEffect(() => {
-        fire.getProducts()
+        console.log("useEffect : cateo : ", props.cateo)
+        setLoad(1)
+        fire.getProducts(props.cateo)
             .then((data) => {
                 setLoad(0)
                 setData(data)
             })
-    }, [])
+    }, [props.cateo])
 
     let genCard = (x) => {
         let out = []
@@ -96,6 +98,7 @@ let Products = () => {
                     {console.log(data)}
                 </div>
             }
+            {props.cateo}
         </div>
     )
 }

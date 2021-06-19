@@ -15,7 +15,7 @@ let Login = () => {
         <>
             <div className='login-root'>
                 <div className='login-title'>
-                    <img src={logo}></img>
+                    <img src={logo} alt='logo'></img>
                 </div>
 
                 <div className='loginSignUp'>
