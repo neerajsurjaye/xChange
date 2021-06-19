@@ -1,6 +1,7 @@
 .UserBack{
     background-color: var(--back);
     height: 100vh;
+    padding-top: 65px;
 }
 
 .UserPaper{
