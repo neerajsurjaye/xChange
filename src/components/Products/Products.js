@@ -6,29 +6,43 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import CatLabel from '../CatLabel/CatLabel'
 import './Products.css'
+import { useEffect } from 'react';
+import fire from '../../scripts/fire'
+import { useState } from 'react';
 
-
-
+import Loader from '../Loader/Loader'
 
 let Products = () => {
 
+    let [load, setLoad] = useState(1)
+    let [data, setData] = useState({})
+
+    useEffect(() => {
+        fire.getProducts()
+            .then((data) => {
+                setLoad(0)
+                setData(data)
+            })
+    }, [])
 
     let genCard = (x) => {
         let out = []
-        for (let i = 0; i < x; i++) {
+        let prod;
+        for (let i = 0; i < data.length; i++) {
+            prod = data[i]
             out.push(
-                <Card key={i}>
+                <Card key={i} className={"ProdCard"}>
                     <CardActionArea>
 
                         <CardMedia
                             className={'Prodmedia'}
-                            image="https://www.mountaingoatsoftware.com/uploads/blog/2016-09-06-what-is-a-product.png"
+                            image={prod.imageUrl || "https://www.mountaingoatsoftware.com/uploads/blog/2016-09-06-what-is-a-product.png"}
                             title="Contemplative Reptile"
                         />
 
                         <CardContent>
                             <Typography gutterBottom variant="h5" component="h2">
-                                Liddzard
+                                {prod.name}
                             </Typography>
 
 
@@ -37,17 +51,20 @@ let Products = () => {
                                 across all continents except Antarctica
                             </Typography> */}
 
-                            <div className="CatCont">
+                            {/* <div className="CatCont">
                                 <CatLabel cat={1}></CatLabel>
                                 <CatLabel cat={2}></CatLabel>
                                 <CatLabel cat={3}></CatLabel>
-                            </div>
+                            </div> */}
 
 
                             <Typography gutterBottom variant="body2">
-                                Price : 34
+                                Price : {prod.price}
                             </Typography>
 
+                            <Typography variant='caption'>
+                                {`${'>'} ${prod.userName}`}
+                            </Typography>
 
                         </CardContent>
 
@@ -62,8 +79,15 @@ let Products = () => {
 
 
     return (
-        <div className='ProductCont'>
-            {genCard(18)}
+        <div className='Products'>
+            {load ?
+                <Loader></Loader>
+                :
+                <div className='ProductCont'>
+                    {genCard(18)}
+                    {console.log(data)}
+                </div>
+            }
         </div>
     )
 }

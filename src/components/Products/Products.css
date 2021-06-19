@@ -1,3 +1,13 @@
+.Products{
+    width: 100%;
+    background-color: var(--back);
+    height: 100%;
+}
+
+.ProdCard{
+    height: fit-content;
+}
+
 .ProductCont{
     width: 100%;
     display: grid;
@@ -5,6 +15,7 @@
     gap: 10px;
     padding: 20px 15px;
     background-color: var(--back);
+    height: 100%;
 }
 
 .Prodmedia{

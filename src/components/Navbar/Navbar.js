@@ -102,7 +102,9 @@ let Navbar = (props) => {
                         xChange
                     </Typography>
 
-
+                    <Link to='/'>
+                        <Typography variant='body2' color='textSecondary'>Home</Typography>
+                    </Link>
 
                     {
                         // Check logged in or not

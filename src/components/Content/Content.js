@@ -19,7 +19,7 @@ let Content = () => {
     return (
         <>
             <div
-                // style={{ height: '150vh' }}
+                style={{ height: '100%' }}
                 className={classes.root}
             >
 

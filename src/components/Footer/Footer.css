@@ -25,3 +25,8 @@
     text-decoration: underline;
     cursor: pointer;
 }
+
+.footer-version{
+    margin: 0 10px;
+    font-size: 0.8rem;
+}

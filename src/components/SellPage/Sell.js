@@ -6,11 +6,14 @@ import { useState } from 'react'
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import fire from '../../scripts/fire'
 import Loader from '../Loader/Loader'
+import { Alert, AlertTitle } from '@material-ui/lab'
 
 
 let Sell = () => {
 
+    let [UploadInfo, setUploadInfo] = useState("starting")
     let [load, setLoad] = useState(0)
+    let [errLevel, setErrLevel] = useState('info')
     let [cats, setCats] = useState({
         Testing: {
             name: 'Testing',
@@ -93,10 +96,15 @@ let Sell = () => {
 
     let submitForm = (e) => {
         setLoad(1)
-        fire.uploadProd(name, desc, price, file, phone, mail, genCatOut())
+        fire.uploadProd(name, desc, price, file, phone, mail, genCatOut(), setUploadInfo)
             .then((obj) => {
-                console.log("object : ", obj);
+                console.log(obj);
                 setLoad(0)
+            })
+            .catch((err) => {
+                setErrLevel('error')
+                setLoad(1)
+                setUploadInfo(err)
             })
     }
 
@@ -116,6 +124,11 @@ let Sell = () => {
                     {load ?
                         <>
                             <Loader></Loader>
+                            <Alert severity={errLevel}>
+                                <AlertTitle>Uploading</AlertTitle>
+                                {UploadInfo}
+                            </Alert>
+
                         </>
                         :
                         <form>
