@@ -153,5 +153,20 @@ let getProducts = (cats) => {
 
 }
 
-let out = { init, signUp, logOut, signIn, getUser, genUser, uploadProd, getProducts }
+let userProds = (prods) => {
+
+    let getData = async () => {
+        let out = []
+
+        for (let key in prods) {
+            let docRef = await db.collection('products').doc(prods[key]).get()
+            let data = await docRef.data()
+            out.push(data)
+        }
+        return out;
+    }
+    return getData();
+}
+
+let out = { init, signUp, logOut, signIn, getUser, genUser, uploadProd, getProducts, userProds }
 export default out

@@ -1,4 +1,4 @@
-import { Typography } from '@material-ui/core'
+import { Typography, Card, CardActionArea, CardMedia, CardContent } from '@material-ui/core'
 import { Container } from '@material-ui/core'
 import Navbar from '../Navbar/Navbar'
 import './User.css'
@@ -12,10 +12,72 @@ import Loader from '../Loader/Loader'
 import Alert from '@material-ui/lab/Alert'
 import Button from '@material-ui/core/Button'
 import { Link } from 'react-router-dom'
+import CatLabel from '../CatLabel/CatLabel'
+
+let genLabels = (cats) => {
+    let out = [];
+    for (let i = 0; i < cats.length; i++) {
+        out.push(
+            <CatLabel cat={cats[i]} key={i}></CatLabel>
+        )
+    }
+    return out;
+}
+
+let genCard = (data) => {
+    let out = []
+    let prod;
+    for (let i = 0; i < data.length; i++) {
+        prod = data[i]
+        out.push(
+            <Card key={i} className={"ProdCard"}>
+                <CardActionArea>
+
+                    <CardMedia
+                        className={'Prodmedia'}
+                        image={prod.imageUrl || "https://www.mountaingoatsoftware.com/uploads/blog/2016-09-06-what-is-a-product.png"}
+                        title="Contemplative Reptile"
+                    />
+
+                    <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                            {prod.name}
+                        </Typography>
+
+
+                        {/* <Typography variant="body2" color="textSecondary" component="p">
+                            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+                            across all continents except Antarctica
+                        </Typography> */}
+
+                        <div className="CatCont">
+                            {genLabels(prod.cats)}
+                        </div>
+
+
+                        <Typography gutterBottom variant="body2">
+                            Price : {prod.price}
+                        </Typography>
+
+                        <Typography variant='caption'>
+                            {`${'>'} ${prod.userName}`}
+                        </Typography>
+
+                    </CardContent>
+
+                </CardActionArea>
+
+            </Card>
+        )
+    }
+
+    return out;
+}
 
 let UserData = (props) => {
     let user = props.user
 
+    console.log(user)
     if (!user) {
         return <Loader></Loader>
     }
@@ -26,7 +88,7 @@ let UserData = (props) => {
 
             <div className="UserMargin">
                 <Typography variant='h5' color='textSecondary'>Name : {user.name} </Typography>
-                <UploadProd user={user}></UploadProd>
+                <UploadProd user={user} prods={props.prods}></UploadProd>
             </div>
         </>
     )
@@ -53,18 +115,23 @@ let UploadProd = (props) => {
         <div className="formMargin">
 
             <Typography variant='h5'>Your Products</Typography>
-            <UserProducts></UserProducts>
+            <UserProducts prods={props.prods}></UserProducts>
         </div >
     </>
 }
 
-let UserProducts = () => {
-    return <div>Not Implemented</div>
+let UserProducts = (props) => {
+    return <div className="UserProducts">
+        {genCard(props.prods)}
+    </div>
 }
+
+
 
 let User = () => {
 
     let [user, setUser] = useState("")
+    let [prods, setProds] = useState([])
 
 
     useEffect(() => {
@@ -74,6 +141,11 @@ let User = () => {
             fire.getUser(data.uid)
                 .then((data) => {
                     setUser(data)
+                    fire.userProds(data.prods)
+                        .then((docs) => {
+                            console.log(docs);
+                            setProds(docs)
+                        })
                 })
         })
 
@@ -86,7 +158,7 @@ let User = () => {
             <Navbar user='1'></Navbar>
             <Container maxWidth='md'>
                 <Paper elevation={3} className='UserPaper'>
-                    <UserData user={user}></UserData>
+                    <UserData user={user} prods={prods}></UserData>
                 </Paper>
             </Container>
         </div >

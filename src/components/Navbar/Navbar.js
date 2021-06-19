@@ -92,7 +92,7 @@ let Navbar = (props) => {
 
     return (
         <>
-            <AppBar className={classes.root} position='sticky'>
+            <AppBar className={classes.root} position='fixed'>
                 <Toolbar>
                     {
                         props.user || (

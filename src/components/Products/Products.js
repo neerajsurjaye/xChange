@@ -94,7 +94,7 @@ let Products = (props) => {
                 <Loader></Loader>
                 :
                 <div className='ProductCont'>
-                    {genCard(18)}
+                    {genCard()}
                     {console.log(data)}
                 </div>
             }
