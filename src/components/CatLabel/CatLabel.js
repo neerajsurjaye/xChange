@@ -2,23 +2,32 @@ import './CatLabel.css'
 
 let CatLabel = (props) => {
 
-    let cats = [
-        ['Electronics', '#999'],
-        ['Testing', '#F00'],
-        ['Clothes', '#3C5']
-    ]
-
-    if (!props.cat || isNaN(props.cat)) {
-        return (
-            <div className={'CatLabel'}>
-                Error
-            </div>
-        )
+    let cats = {
+        '00': {
+            name: 'Testing',
+            color: '#F33'
+        },
+        "01": {
+            name: 'Electronics',
+        },
+        '02': {
+            name: 'Clothes',
+        },
+        '03': {
+            name: 'Mobiles',
+        },
+        '04': {
+            name: 'Software',
+        },
+        '05': {
+            name: 'Furniture',
+        },
     }
 
+
     return (
-        <div className={`CatLabel`} style={{ backgroundColor: cats[props.cat - 1][1] }}>
-            {cats[props.cat - 1][0]}
+        <div className={`CatLabel`} style={{ backgroundColor: cats[props.cat].color || '#999' }}>
+            {cats[props.cat].name}
         </div>
     )
 }

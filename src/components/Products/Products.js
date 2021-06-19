@@ -17,6 +17,16 @@ let Products = () => {
     let [load, setLoad] = useState(1)
     let [data, setData] = useState({})
 
+    let genLabels = (cats) => {
+        let out = [];
+        for (let i = 0; i < cats.length; i++) {
+            out.push(
+                <CatLabel cat={cats[i]}></CatLabel>
+            )
+        }
+        return out;
+    }
+
     useEffect(() => {
         fire.getProducts()
             .then((data) => {
@@ -51,11 +61,9 @@ let Products = () => {
                                 across all continents except Antarctica
                             </Typography> */}
 
-                            {/* <div className="CatCont">
-                                <CatLabel cat={1}></CatLabel>
-                                <CatLabel cat={2}></CatLabel>
-                                <CatLabel cat={3}></CatLabel>
-                            </div> */}
+                            <div className="CatCont">
+                                {genLabels(prod.cats)}
+                            </div>
 
 
                             <Typography gutterBottom variant="body2">
