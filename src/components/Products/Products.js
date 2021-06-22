@@ -43,7 +43,7 @@ let Products = (props) => {
         for (let i = 0; i < data.length; i++) {
             prod = data[i]
             out.push(
-                <Card key={i} className={"ProdCard"}>
+                <Card key={i} className={"ProdCard"} >
                     <CardActionArea>
 
                         <CardMedia
