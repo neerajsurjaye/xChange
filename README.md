@@ -1,3 +1,3 @@
-#E-Commerce website 
+# E-Commerce website 
 
-##Made with React and firebase.
+## Made with React and firebase.
