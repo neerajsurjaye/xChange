@@ -125,7 +125,7 @@ let Navbar = (props) => {
                             :
                             <Link to='/login'>
                                 <Button>
-                                    Login
+                                    <Typography variant='body2' color='textSecondary'>Login</Typography>
                                 </Button>
                             </Link>
                     }
@@ -135,7 +135,7 @@ let Navbar = (props) => {
                     <IconButton>
                         <ShoppingCartIcon className={classes.text}></ShoppingCartIcon>
                     </IconButton>
-                    <Typography variant='body1' className={classes.text}>0</Typography>
+
 
 
                 </Toolbar>

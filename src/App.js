@@ -6,6 +6,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Login from './components/Login/Login'
 import User from './components/User/User'
 import Sell from './components/SellPage/Sell'
+import Buy from './components/Buy/Buy'
 
 function App() {
   // fire.init()
@@ -32,6 +33,10 @@ function App() {
 
           <Route path='/sell'>
             <Sell></Sell>
+          </Route>
+
+          <Route path='/product/:id'>
+            <Buy></Buy>
           </Route>
 
         </Switch>

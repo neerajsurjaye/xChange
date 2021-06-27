@@ -1,0 +1,63 @@
+.Buy{
+    width: 70%;
+    padding: 20px;
+}
+
+.BuyBack{
+    display: flex;
+    justify-content: center;
+    margin-top: 85px;
+    background-color: var(--back);
+    min-height: 70%;
+}
+
+.BuyHeader{
+    margin: 6px 2px;
+}
+
+.BuyCont{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap:10px;
+    margin-top: 25px;
+}
+
+.BuyContactCont{
+    margin-top: 35px;
+}
+
+.BuyContact{
+    width: fit-content;
+}
+
+.ContactCard{
+    display: flex;
+
+}
+
+.BuyImg{
+    width: 100%;
+    
+}
+
+.BuyDesc{
+    padding: 10px;
+}
+
+
+@media (max-width : 1100px) {
+    .Buy{
+        width: 90%;
+    }
+}
+
+@media (max-width : 820px) {
+    .Buy{
+        width: 95%;
+    }
+
+    .BuyCont{
+        grid-template-columns: none;
+        grid-template-rows: auto 1fr;
+    }
+}

@@ -9,6 +9,7 @@ import './Products.css'
 import { useEffect } from 'react';
 import fire from '../../scripts/fire'
 import { useState } from 'react';
+import { Link } from 'react-router-dom'
 
 import Loader from '../Loader/Loader'
 
@@ -28,7 +29,7 @@ let Products = (props) => {
     }
 
     useEffect(() => {
-        console.log("useEffect : cateo : ", props.cateo)
+        // console.log("useEffect : cateo : ", props.cateo)
         setLoad(1)
         fire.getProducts(props.cateo)
             .then((data) => {
@@ -42,45 +43,48 @@ let Products = (props) => {
         let prod;
         for (let i = 0; i < data.length; i++) {
             prod = data[i]
+            // console.log('prod : ', prod);
             out.push(
-                <Card key={i} className={"ProdCard"} >
-                    <CardActionArea>
+                <Link to={`product/${prod._id}`} key={i} >
+                    <Card className={"ProdCard"} >
+                        <CardActionArea>
 
-                        <CardMedia
-                            className={'Prodmedia'}
-                            image={prod.imageUrl || "https://www.mountaingoatsoftware.com/uploads/blog/2016-09-06-what-is-a-product.png"}
-                            title="Contemplative Reptile"
-                        />
+                            <CardMedia
+                                className={'Prodmedia'}
+                                image={prod.imageUrl || "https://www.mountaingoatsoftware.com/uploads/blog/2016-09-06-what-is-a-product.png"}
+                                title="Contemplative Reptile"
+                            />
 
-                        <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2">
-                                {prod.name}
-                            </Typography>
+                            <CardContent>
+                                <Typography gutterBottom variant="h5" component="h2">
+                                    {prod.name}
+                                </Typography>
 
 
-                            {/* <Typography variant="body2" color="textSecondary" component="p">
+                                {/* <Typography variant="body2" color="textSecondary" component="p">
                                 Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
                                 across all continents except Antarctica
                             </Typography> */}
 
-                            <div className="CatCont">
-                                {genLabels(prod.cats)}
-                            </div>
+                                <div className="CatCont">
+                                    {genLabels(prod.cats)}
+                                </div>
 
 
-                            <Typography gutterBottom variant="body2">
-                                Price : {prod.price}
-                            </Typography>
+                                <Typography gutterBottom variant="body2">
+                                    Price : {prod.price}
+                                </Typography>
 
-                            <Typography variant='caption'>
-                                {`${'>'} ${prod.userName}`}
-                            </Typography>
+                                <Typography variant='caption'>
+                                    {`${'>'} ${prod.userName}`}
+                                </Typography>
 
-                        </CardContent>
+                            </CardContent>
 
-                    </CardActionArea>
+                        </CardActionArea>
 
-                </Card>
+                    </Card>
+                </Link>
             )
         }
 
@@ -95,7 +99,6 @@ let Products = (props) => {
                 :
                 <div className='ProductCont'>
                     {genCard()}
-                    {console.log(data)}
                 </div>
             }
             {props.cateo}

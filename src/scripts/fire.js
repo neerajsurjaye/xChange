@@ -132,7 +132,9 @@ let getProducts = (cats) => {
             .then((snapshot) => {
                 let data = []
                 snapshot.forEach((doc) => {
-                    data.push(doc.data());
+                    let prod = doc.data()
+                    prod._id = doc.id;
+                    data.push(prod);
                 })
                 return data
             })
@@ -147,6 +149,13 @@ let getProducts = (cats) => {
             return data
         })
 
+}
+
+let getSingleProd = (id) => {
+    return db.collection('products').doc(id).get()
+        .then((doc) => {
+            return doc.data()
+        })
 }
 
 let userProds = (prods) => {
@@ -164,5 +173,5 @@ let userProds = (prods) => {
     return getData();
 }
 
-let out = { init, signUp, logOut, signIn, getUser, genUser, uploadProd, getProducts, userProds }
+let out = { init, signUp, logOut, signIn, getUser, genUser, uploadProd, getProducts, userProds, getSingleProd }
 export default out

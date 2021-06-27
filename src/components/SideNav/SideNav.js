@@ -15,7 +15,8 @@ let SideNav = (props) => {
             position: 'relative',
             [theme.breakpoints.down('sm')]: {
                 display: 'none'
-            }
+            },
+            backgroundColor: '#fff'
         }
     }))
 
