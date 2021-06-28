@@ -90,12 +90,15 @@ let Navbar = (props) => {
         }
     }, [])
 
+    let renderDrawer = window.location.pathname
+    console.log(renderDrawer);
+
     return (
         <>
             <AppBar className={classes.root} position='fixed'>
                 <Toolbar>
                     {
-                        props.user || (
+                        (renderDrawer === '/') && (
                             <IconButton
                                 className={classes.menuIcon}
                                 onClick={() => setDraw(!draw)}
@@ -104,13 +107,13 @@ let Navbar = (props) => {
                             </IconButton>
                         )
                     }
-
                     {/* <Typography variant='h4' className={`${classes.text} ${classes.autoMargin}`}>
                         xChange
                     </Typography> */}
 
-                    <img src={logo} className={`${classes.navLogo} ${classes.autoMargin}`} alt='logo'></img>
-
+                    <Link to='/' className={classes.autoMargin}>
+                        <img src={logo} className={`${classes.navLogo}`} alt='logo'></img>
+                    </Link>
 
                     <Link to='/'>
                         <Typography variant='body2' color='textSecondary'>Home</Typography>

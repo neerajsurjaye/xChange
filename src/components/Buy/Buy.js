@@ -9,6 +9,11 @@ import Loader from '../Loader/Loader'
 import CatLabel from '../CatLabel/CatLabel'
 import firebase from 'firebase/app'
 import Alert from '@material-ui/lab/Alert'
+import Divider from '@material-ui/core/Divider'
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import IconButton from '@material-ui/core/IconButton'
+import Button from '@material-ui/core/Button'
+import { Link } from 'react-router-dom'
 
 let GenLabels = (props) => {
     let cats = props.cats;
@@ -29,7 +34,6 @@ let Buy = () => {
     useEffect(() => {
         fire.getSingleProd(id)
             .then((data) => {
-                console.log(data);
                 setProd(data)
             })
     }, [id])
@@ -37,7 +41,7 @@ let Buy = () => {
     return <>
         <Navbar></Navbar>
         <div className='BuyBack'>
-            <Paper className='Buy'>
+            <Paper className='Buy' elevation={3}>
                 <ProdPage prod={prod}></ProdPage>
             </Paper>
         </div>
@@ -82,7 +86,15 @@ let ProdPage = (props) => {
     let prod = props.prod;
     return (
         <>
-            <Typography variant='h4' className='BuyHeader'>{prod.name}</Typography>
+            <div className='BuyHeader'>
+                <Link to='/'>
+                    <IconButton>
+                        <ArrowBackIosIcon></ArrowBackIosIcon>
+                    </IconButton>
+                </Link>
+                <Typography variant='h4' className='BuyHeader'>{prod.name}</Typography>
+            </div>
+            <Divider></Divider>
             <div className='BuyCont'>
 
                 <div>
@@ -91,14 +103,22 @@ let ProdPage = (props) => {
                 </div>
 
                 <div className='BuyDesc'>
-                    <Typography variant='h6'>Description</Typography>
+                    <div className='ContactCard'>
+                        <Typography variant='h6'>Price : &nbsp;</Typography>
+                        <Typography variant='h6' component='p' color='textSecondary'>{prod.price}</Typography>
+                    </div>
+
+                    <Typography variant='h6'>Description : </Typography>
                     <Typography variant='body1' component='p' color='textSecondary'>{prod.desc}</Typography>
 
                     <div className='BuyContactCont'>
                         <Contact prod={prod}></Contact>
                     </div>
 
-
+                    <div className='ButtonCont'>
+                        <Button variant='contained' color='primary'>Buy</Button>
+                        <Button variant='outlined' color='secondary'>Add To Cart</Button>
+                    </div>
                 </div>
             </div>
 

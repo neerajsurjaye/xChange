@@ -20,7 +20,7 @@ function App() {
           <Route exact path='/'>
 
             <Content></Content>
-            <Footer></Footer>
+            {/* <Footer></Footer> */}
           </Route>
 
           <Route path='/login'>
@@ -41,6 +41,7 @@ function App() {
 
         </Switch>
       </BrowserRouter>
+      <Footer></Footer>
     </div>
   );
 }

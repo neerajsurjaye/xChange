@@ -1,4 +1,3 @@
-import Footer from "../Footer/Footer"
 import './Login.css'
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { Route, Switch, useRouteMatch, Link } from "react-router-dom"
@@ -40,7 +39,7 @@ let Login = () => {
 
             </Link>
 
-            <Footer></Footer>
+            {/* <Footer></Footer> */}
         </>
     )
 }

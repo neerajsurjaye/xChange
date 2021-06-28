@@ -7,10 +7,6 @@ let Footer = () => {
                 <a href='https://github.com/neerajsurjaye' className="unlinked" rel="noreferrer" target='_blank'>
                     &#169; Neeraj Surjaye
                 </a>
-
-                <nav className='footer-version'>
-                    ( V - alpha )
-                </nav>
             </div>
             <div></div>
         </div>
